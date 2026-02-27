@@ -15,6 +15,10 @@ from components import (
     metric_row, section_heading,
     S, FH, FB, FM, TXT, NO_SEL,
 )
+from tab_explainers import (
+    explainer_overview, explainer_one_tailed, explainer_two_tailed,
+    explainer_comparison, explainer_finance, explainer_python,
+)
 from charts import (
     normal_curve_overview, right_tailed_chart, left_tailed_chart,
     two_tailed_chart, comparison_chart,
@@ -60,6 +64,7 @@ def tab_overview():
         )
     )
 
+    explainer_overview()
     render_card("🗺 Decision Guide: Which Test?",
         table_html(
             ["Research Question","H₁","Test","Critical Region"],
@@ -114,6 +119,7 @@ def tab_one_tailed():
            "gold")
     )
 
+    explainer_one_tailed()
     c1, c2, c3, c4 = st.columns(4)
     x_bar = c1.number_input("Sample Mean (x̄) %", value=13.5, step=0.1, key="ot_xb")
     mu_0  = c2.number_input("Pop. Mean (μ₀) %",   value=12.0, step=0.1, key="ot_mu")
@@ -175,6 +181,7 @@ def tab_two_tailed():
            "gold")
     )
 
+    explainer_two_tailed()
     c1, c2, c3, c4 = st.columns(4)
     x_bar = c1.number_input("Sample Mean (x̄)", value=47.5, step=0.5, key="tt_xb")
     mu_0  = c2.number_input("Pop. Mean (μ₀)",   value=50.0, step=0.5, key="tt_mu")
@@ -244,6 +251,7 @@ def tab_comparison():
         )
     )
 
+    explainer_comparison()
     render_card("🎯 Type I & Type II Errors",
         two_col(
             ib(f'<span style="color:#dc3545;-webkit-text-fill-color:#dc3545;font-weight:600">'
@@ -321,6 +329,7 @@ def tab_finance_examples():
         )
     )
 
+    explainer_finance()
     render_card("📋 Solved: Bond Portfolio Duration Test (t-test)",
         ib(f'<span style="color:#FFD700;-webkit-text-fill-color:#FFD700;font-weight:600">Scenario:</span> '
            + txt_s(' Target modified duration = 7 years. After restructuring, 49 bonds: '
@@ -360,6 +369,7 @@ def tab_finance_examples():
 # ═══════════════════════════════════════════════════════════════════
 def tab_python_code():
     render_card("🐍 Python Implementation", "")
+    explainer_python()
 
     st.code('''import numpy as np
 import scipy.stats as stats
